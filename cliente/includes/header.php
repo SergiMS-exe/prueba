@@ -1,4 +1,4 @@
-<?php const __DIR_NAME__ = 'https://blablacarclient.herokuapp.com/'; ?>
+<?php const __DIR_NAME__ = 'https://pruebasergilipoopclient.herokuapp.com/'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
