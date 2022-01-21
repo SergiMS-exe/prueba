@@ -11,7 +11,7 @@ if (isset($_SESSION['usuario'])) {
     $email = $_SESSION['usuario']->email;
 
     // Compruebo si el email existe en la BD
-    $data = file_get_contents("https://blablacariw.herokuapp.com/findUserByEmail/" . $email);
+    $data = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/findUserByEmail/" . $email);
     $user = json_decode($data);
 
     // Si existe -> me traigo su información y lo guardo
@@ -57,7 +57,7 @@ if (isset($_SESSION['viajes_encontrados'])) {
                 <?php
                 foreach ($viajes as $viaje) {
                     // Me traigo el nombre del conductor
-                    $data = file_get_contents("https://blablacariw.herokuapp.com/findUserById/" . $_SESSION['usuario']->_id);
+                    $data = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/findUserById/" . $_SESSION['usuario']->_id);
                     $nombre_conductor = json_decode($data)->data->usuario[0]->nombre;
 
                 ?>
@@ -103,7 +103,7 @@ if (isset($_SESSION['viajes_encontrados'])) {
                 <?php
                 foreach ($viajes as $viaje) {
                     // Me traigo el nombre del conductor
-                    $data = file_get_contents("https://blablacariw.herokuapp.com/findUserById/" . $_SESSION['usuario']->_id);
+                    $data = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/findUserById/" . $_SESSION['usuario']->_id);
                     $nombre_conductor = json_decode($data)->data->usuario[0]->nombre;
 
                 ?>

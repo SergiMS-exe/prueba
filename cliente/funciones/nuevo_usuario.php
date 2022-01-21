@@ -4,7 +4,7 @@ $nombre = $_SESSION['usuario']->usuario;
 $apellido = $_SESSION['usuario']->apellido;
 $email = $_SESSION['usuario']->email;
 
-$url = 'https://blablacariw.herokuapp.com/users/add';
+$url = 'https://pruebasergilipoopapi.herokuapp.com/users/add';
     
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);

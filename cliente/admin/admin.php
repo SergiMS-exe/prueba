@@ -1,8 +1,8 @@
 <?php
-$dataUsers = file_get_contents("https://blablacariw.herokuapp.com/");
+$dataUsers = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/");
 $users = json_decode($dataUsers)->data->usuarios;
 
-$dataViajes = file_get_contents("https://blablacariw.herokuapp.com/listaviajes");
+$dataViajes = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/listaviajes");
 $viajes = json_decode($dataViajes)->data->viajes;
 
 include './includes/header.php';

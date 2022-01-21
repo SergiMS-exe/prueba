@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $res = file_get_contents("https://blablacariw.herokuapp.com/weather/astronomy/".$_GET['location']."&".$_GET['day']);
+    $res = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/weather/astronomy/".$_GET['location']."&".$_GET['day']);
     $data = json_decode($res);
 
     include '../../includes/header.php';
