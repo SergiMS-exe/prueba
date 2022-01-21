@@ -15,14 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     curl_setopt($ch, CURLOPT_POST, true);
 
     $data = array(
-        "id_pasajeros" => [],
-        "id_conductor" => trim($_POST['id_conductor']),
-        "fecha_salida" => strtotime($_POST['fecha_salida']),
-        "hora_salida" => strtotime($_POST['hora_salida']),
-        "lugar_salida" => trim($_POST['lugar_salida']),
-        "lugar_llegada" => trim($_POST['lugar_llegada']),
-        "price" => intval($_POST['price']),
-        "currency" => 'EUR'
+        "titulo" => trim($_POST['titulo']),
+        "descripcion" => trim($_POST['descripcion']),
+        "precio_salida" => trim($_POST['precio_salida'])
     );
 
     $json = json_encode($data);
@@ -36,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $_SESSION['server_msg'] = $result->data->msg;
 
-    header('Location: ../../index.php');
+    header('Location: ../../perfil_usuario.php');
 }
 
 include "../../includes/header.php";
@@ -45,33 +40,25 @@ include "../../includes/header.php";
 <div class="container">
     <div class="login-box">
         <div class="login-card">
-            <p class="login-text">Crear viaje</p>
+            <p class="login-text">Subir artículo</p>
 
-            <form action="crear_viaje.php" method="POST">
+            <form action="subir_articulo.php" method="POST">
                 <div class="login-inputs">
                     <div class="login-input">
-                        <label for="lugar_saluda">Lugar de salida</label>
-                        <input type="text" name="lugar_salida" required>
+                        <label for="lugar_saluda">Título</label>
+                        <input type="text" name="titulo" required>
                     </div>
                     <div class="login-input">
-                        <label for="lugar_llegada">Lugar de llegada</label>
-                        <input type="text" name="lugar_llegada" required>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <input type="date" name="fecha_salida" required>
-                        </div>
-                        <div class="col">
-                            <input type="time" name="hora_salida" required>
-                        </div>
+                        <label for="lugar_llegada">Descripción</label>
+                        <input type="text" name="descripcion" required>
                     </div>
                     <div class="login-input">
                         <label for="price">Precio (€)</label>
-                        <input type="number" name="price" required>
+                        <input type="number" name="precio_salida" required>
                     </div>
-                    <input type="hidden" value=<?php echo $_SESSION['usuario']->_id ?> name="id_conductor">
+                    <input type="hidden" value=<?php echo $_SESSION['usuario']->email ?> name="vendedor">
                     <div class="centro">
-                        <button type="submit" value="Crear" class="submit-button">Crear</button>
+                        <button type="submit" value="Subir" class="submit-button">Subir</button>
                         <a href="../../index.php" style="margin: 2rem 1.5rem">Cancelar</a>
                     </div>
                 </div>

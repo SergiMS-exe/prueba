@@ -28,7 +28,7 @@
                             <?php }?>
                         </li>
                         <li class="nav-item">
-                            <a href="../servicios/viaje/crear_viaje.php" class="nav-link">Publicar viaje</a>
+                            <a href="../servicios/articulos/subir_articulo.php" class="nav-link">Publicar articulo</a>
                         </li>
                         <?php
 

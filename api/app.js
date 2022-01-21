@@ -25,9 +25,9 @@ app.set('db', 'mongodb://root:root@cluster0-shard-00-00.xrhm0.mongodb.net:27017,
 
 //Rutas/controladores por lógica
 require("./routes/users")(app, gestorBD);  // (app, param1, param2, etc.)
-require("./routes/travels")(app, gestorBD);
-require("./routes/wheater_api")(app, https);
-require("./routes/incidencias_api")(app, https);
+require("./routes/articiculos")(app, gestorBD);
+require("./routes/pujas")(app, https);
+//require("./routes/incidencias_api")(app, https);
 require("./routes/flickr_api")(app, https);
 require("./routes/messages")(app, gestorBD);
 require("./routes/conversations")(app, gestorBD);

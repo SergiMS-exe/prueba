@@ -35,10 +35,7 @@ if (isset($_SESSION['login'])) {
 <h3 style="margin-top:40px; margin-left:10px">Mis viajes</h3>
 <table>
     <tr>
-        <th>Fecha Salida</th>
-        <th>Hora Salida</th>
-        <th>Lugar Salida</th>
-        <th>Lugar Llegada</th>
+        <th>Titulo</th>
         <th>Precio</th>
     </tr>
     <?php foreach ($dataViajes->data->viajes as $viaje) { ?>

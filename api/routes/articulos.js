@@ -31,17 +31,17 @@ module.exports = function (app, gestorBD) {
   });
 
   // Todos los viajes (TODO: Se podrán hacer busquedas sobre ellos)
-  app.get("/listaviajes", function (req, res) {
-    gestorBD.obtenerItem({}, "viajes", function (viajes) {
-      if (viajes == null)
+  app.get("/articulos", function (req, res) {
+    gestorBD.obtenerItem({}, "articulos", function (articulos) {
+      if (articulos == null)
         res.send({
           Error: {
             status: 500,
-            data: "Se ha producido un error al obtener los viajes, intentelo de nuevo más tarde",
+            data: "Se ha producido un error al obtener los articulos, intentelo de nuevo más tarde",
           },
         });
       else {
-        res.send({ status: 200, data: { viajes: viajes } });
+        res.send({ status: 200, data: { articulos: articulos } });
       }
     });
   });
@@ -77,43 +77,43 @@ module.exports = function (app, gestorBD) {
     });
   });
 
-  // CRUD de viajes
-  app.post("/travels/add", function (req, res) {
-    gestorBD.insertarItem(req.body, "viajes", function (result) {
+  // CRUD de articulos
+  app.post("/articulos/add", function (req, res) {
+    gestorBD.insertarItem(req.body, "articulos", function (result) {
       if (result == null) {
-        console.log("WARN: Fallo al insertar un viaje.");
+        console.log("WARN: Fallo al insertar un articulo.");
         res.send({
           Error: {
             status: 500,
-            data: "Se ha producido un error al insertar el viaje, intentelo de nuevo más tarde",
+            data: "Se ha producido un error al insertar el articulo, intentelo de nuevo más tarde",
           },
         });
       } else {
-        res.send({ status: 200, data: { msg: "Viaje insertado" } });
+        res.send({ status: 200, data: { msg: "articulo insertado" } });
       }
     });
   });
 
-  app.delete("/travels/delete", function (req, res) {
+  app.delete("/articulos/delete", function (req, res) {
     let criterio = { _id: gestorBD.mongo.ObjectID(req.body.id) };
-    gestorBD.eliminarItem(criterio, "viajes", function (result) {
+    gestorBD.eliminarItem(criterio, "articulos", function (result) {
       if (result == null) {
         res.send({
           Error: {
             status: 500,
-            data: "Se ha producido un error al borrar el viaje, intentelo de nuevo más tarde",
+            data: "Se ha producido un error al borrar el articulo, intentelo de nuevo más tarde",
           },
         });
       } else {
-        res.send({ status: 200, data: { msg: "Viaje eliminado" } });
+        res.send({ status: 200, data: { msg: "articulo eliminado" } });
       }
     });
   });
 
-  app.get("/travels/edit/:id", function (req, res) {
+  app.get("/articulos/edit/:id", function (req, res) {
     let criterio = { _id: gestorBD.mongo.ObjectID(req.params.id) };
-    gestorBD.obtenerItem(criterio, "viajes", function (viaje) {
-      if (viaje == null) {
+    gestorBD.obtenerItem(criterio, "articulos", function (articulo) {
+      if (articulo == null) {
         res.send({
           Error: {
             status: 500,
@@ -121,20 +121,20 @@ module.exports = function (app, gestorBD) {
           },
         });
       } else {
-        res.send({ status: 200, data: { viaje: viaje } });
+        res.send({ status: 200, data: { articulo: articulo } });
       }
     });
   });
 
-  app.put("/travels/edit/:id", function (req, res) {
+  app.put("/articulos/edit/:id", function (req, res) {
     let criterio = { _id: gestorBD.mongo.ObjectID(req.params.id) };
-    let nuevoViaje = req.body;
-    gestorBD.modificarItem(criterio, nuevoViaje, "viajes", function (result) {
+    let nuevoarticulo = req.body;
+    gestorBD.modificarItem(criterio, nuevoarticulo, "articulos", function (result) {
       if (result == null)
         res.send({
           Error: {
             status: 500,
-            data: "Se ha producido un error al modificar el viaje, intentelo de nuevo más tarde",
+            data: "Se ha producido un error al modificar el articulo, intentelo de nuevo más tarde",
           },
         });
       else {
@@ -143,7 +143,7 @@ module.exports = function (app, gestorBD) {
     });
   });
 
-  app.get("/travels/search", function (req, res) {
+  app.get("/articulos/search", function (req, res) {
     let origen = req.query.origen;
     let destino = req.query.destino;
     let fecha = req.query.fecha;
@@ -152,17 +152,17 @@ module.exports = function (app, gestorBD) {
     let criterio = {
       $and: [{ lugar_salida: origen }, { lugar_llegada: destino }],
     };
-    gestorBD.obtenerItem(criterio, "viajes", function (result) {
+    gestorBD.obtenerItem(criterio, "articulos", function (result) {
       if (result == null)
         res.send({
           Error: {
             status: 500,
-            data: "Se ha producido un error al modificar el viaje, intentelo de nuevo más tarde",
+            data: "Se ha producido un error al modificar el articulo, intentelo de nuevo más tarde",
           },
         });
       else {
           console.log(result)
-        res.send({ status: 200, viajes: result });
+        res.send({ status: 200, articulos: result });
       }
     });
   });
