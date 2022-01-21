@@ -1,0 +1,353 @@
+:root {
+  --azul: rgb(57, 87, 255);
+  --rojo: rgb(206, 34, 34);
+}
+
+.steel-blue {
+  color: #bfcde0;
+}
+
+.white {
+  color: #fefcfd;
+}
+
+.centro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: rgb(204, 244, 255);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+nav {
+  margin-bottom: 2rem;
+  background-color: white;
+}
+
+.contenido-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contenido-header a {
+  text-decoration: none;
+  color: blue;
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 2rem;
+  padding: 1rem 3rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-card {
+  width: 500px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 5px 1px black;
+}
+
+.login-card p {
+  margin: 0;
+  padding: 2rem 0;
+  text-align: center;
+  border-bottom: 1px solid silver;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.login-card a {
+  text-decoration: none;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.login-inputs {
+  padding: 1rem 3rem;
+}
+
+.login-card form input {
+  border: none;
+  width: 100%;
+  border-bottom: 2px solid silver;
+  outline: none;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.submit-button {
+  border: none;
+  background-color: var(--azul);
+  color: white;
+  transition: all 0.3s ease;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 1.8rem;
+  cursor: pointer;
+  text-align: center;
+  padding: 1rem 3rem;
+  margin: 2rem 1.5rem;
+}
+
+.submit-button:hover {
+  background-color: rgb(20, 46, 194);
+}
+
+.login-card form input:focus {
+  border-bottom: 2px solid rgb(57, 87, 255);
+}
+
+.login-input label {
+  display: block;
+}
+
+.login-botones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  border: none;
+  width: 80%;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  color: white;
+  padding: 1.6rem 0;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 1.8rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.blue-button {
+  background-color: rgb(57, 87, 255);
+}
+
+.red-button {
+  background-color: rgb(206, 34, 34);
+}
+
+.login-botones button:hover {
+  transform: scale(1.05);
+}
+
+nav {
+  background-color: white;
+}
+
+.admin__navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5rem 0;
+}
+
+.admin__navbar li {
+  list-style: none;
+}
+
+.admin__navbar li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  font-size: 2rem;
+  padding: 1.8rem;
+  background-color: rgb(57, 87, 255);
+  border-radius: 10px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.admin__navbar li a:hover {
+  background-color: rgb(20, 46, 194);
+}
+
+.admin__navbar li:last-child a {
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  font-size: 2rem;
+  padding: 1.8rem;
+  background-color: rgb(206, 34, 34);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.admin__navbar li:last-child a:hover {
+  background-color: rgb(107, 19, 19);
+}
+
+.admin__info-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3rem;
+}
+
+.admin__info-card {
+  background-color: white;
+  border: 1px solid rgb(204, 204, 204);
+  -webkit-box-shadow: 0px 0px 27px 10px rgba(130, 130, 130, 0.2);
+  box-shadow: 0px 0px 27px 10px rgba(130, 130, 130, 0.2);
+  margin-top: 3rem;
+  padding: 2rem 3rem 2rem 3.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.admin__info-card:hover {
+  cursor: pointer;
+  transform: scale(1.025);
+}
+
+.admin__info-card span {
+  font-weight: 700;
+  color: var(--azul);
+  font-size: 2rem;
+}
+
+.admin__info-card p {
+  font-size: 3rem;
+}
+
+.search__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search__box input {
+  padding: 1rem 0 1rem 1rem;
+  border: none;
+  outline: none;
+  border: 1px solid #ddd;
+  width: 35%;
+}
+
+.search__box input:first-child {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.search__box input:last-child {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 1rem 2rem;
+  background-color: var(--azul);
+  color: white;
+  font-weight: 600;
+  border: 1px solid var(--azul);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 120px;
+}
+
+.search__box input:last-child:hover {
+  background-color: rgb(20, 46, 194);
+  border: 1px solid rgb(20, 46, 194);
+}
+
+.search__box input[type="date"] {
+  width: 180px;
+}
+.search__box input[type="time"] {
+  width: 100px;
+}
+
+.viajes__contenedor {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin: 20px 0;
+}
+
+.viajes__card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 2rem 3rem;
+  -webkit-box-shadow: 0px 0px 19px 7px rgba(0, 0, 0, 0.22);
+  box-shadow: 0px 0px 19px 7px rgba(0, 0, 0, 0.22);
+}
+
+.viajes__card-conductor {
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--azul);
+  text-align: center;
+  cursor: context-menu;
+}
+
+.viajes__card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viajes__card-info span {
+  color: rgb(33, 33, 33);
+  font-size: 1.4rem;
+  opacity: 60%;
+  cursor: context-menu;
+}
+
+.viajes__card-info p {
+  cursor: context-menu;
+}
+
+.viajes__card-precio {
+  color: #0c9d35;
+  font-weight: 700;
+  text-align: center;
+  font-size: 3rem;
+}
+
