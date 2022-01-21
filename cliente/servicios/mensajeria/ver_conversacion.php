@@ -1,7 +1,7 @@
 <?php
     session_start();
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $url = 'https://pruebasergilipoopapi.herokuapp.com/messages/add';
+        $url = 'https://vendavalsergiomateapi.herokuapp.com/messages/add';
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -31,9 +31,9 @@
         $_SESSION['server_msg'] = $result->data->msg;
         header('Location: ver_conversacion.php?id_ajeno='.$aux2.'&id_local='.$aux);
     } else{
-        $res = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/conversacion?id1=".$_GET['id_local']."&id2=".$_GET['id_ajeno']);
+        $res = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/conversacion?id1=".$_GET['id_local']."&id2=".$_GET['id_ajeno']);
         $data = json_decode($res);
-        $resUser = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/users/edit/".$_GET['id_ajeno']);
+        $resUser = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/users/edit/".$_GET['id_ajeno']);
         $dataUser = json_decode($resUser);
     }
 

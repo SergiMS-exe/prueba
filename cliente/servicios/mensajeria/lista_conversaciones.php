@@ -1,8 +1,8 @@
 <?php
     session_start();
-    $res = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/conversaciones/".$_GET['id']);
+    $res = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/conversaciones/".$_GET['id']);
     $data = json_decode($res);
-    // $resViajes = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/listaviajes");
+    // $resViajes = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/listaviajes");
     // $dataViajes = json_decode($resViajes);
 ?>
 

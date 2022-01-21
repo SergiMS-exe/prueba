@@ -7,7 +7,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_POST['boton'] === '1') {
             $autonomia = $_POST['qa'];
-            $res = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/incidencia/autonomia/".$autonomia);
+            $res = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/incidencia/autonomia/".$autonomia);
             $data = json_decode($res);
             if (isset($data->features) && !empty($data->features)) {
                 $msg = "Incidencias en autonomia ".$autonomia;
@@ -17,7 +17,7 @@
             }
         } else if ($_POST['boton'] === '2') {
             $provincia = $_POST['qp'];
-            $res = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/incidencia/provincia/".$provincia);
+            $res = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/incidencia/provincia/".$provincia);
             $data = json_decode($res);
             if(isset($data->features) && !empty($data->features)) {
                 $msg = "Incidencias en provincia ".$provincia;
@@ -27,7 +27,7 @@
             }
         } else if ($_POST['boton'] === '3') {
             $carretera = $_POST['qc'];
-            $res = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/incidencia/carretera/".$carretera);
+            $res = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/incidencia/carretera/".$carretera);
             $data = json_decode($res);
             if(isset($data->features) && !empty($data->features)) {
                 $msg = "Incidencias en carretera ".$carretera;

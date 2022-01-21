@@ -1,6 +1,6 @@
 <?php
 session_start();
-$url = 'https://pruebasergilipoopapi.herokuapp.com/conversations/add';
+$url = 'https://vendavalsergiomateapi.herokuapp.com/conversations/add';
     
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

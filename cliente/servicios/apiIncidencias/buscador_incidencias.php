@@ -12,7 +12,7 @@ if (isset($_GET['provincia']) && $_GET['provincia'] !== ''){
 }
 
 if ($busqueda !== ''){
-    $url = 'https://pruebasergilipoopapi.herokuapp.com/incidencia/' . $busqueda . '/' . strtoupper($_GET[$busqueda]);
+    $url = 'https://vendavalsergiomateapi.herokuapp.com/incidencia/' . $busqueda . '/' . strtoupper($_GET[$busqueda]);
 
     $res = file_get_contents($url);
     $data = json_decode($res);

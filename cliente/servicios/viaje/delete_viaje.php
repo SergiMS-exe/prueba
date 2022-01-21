@@ -2,7 +2,7 @@
     session_start();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $url = 'https://pruebasergilipoopapi.herokuapp.com/travels/delete';
+        $url = 'https://vendavalsergiomateapi.herokuapp.com/travels/delete';
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

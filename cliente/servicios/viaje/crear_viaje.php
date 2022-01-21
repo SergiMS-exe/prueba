@@ -7,7 +7,7 @@ if (isset($_SESSION['server_msg'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $url = 'https://pruebasergilipoopapi.herokuapp.com/travels/add';
+    $url = 'https://vendavalsergiomateapi.herokuapp.com/travels/add';
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);

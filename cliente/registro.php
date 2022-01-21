@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $url = 'https://pruebasergilipoopapi.herokuapp.com/users/add';
+    $url = 'https://vendavalsergiomateapi.herokuapp.com/users/add';
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <title>pruebasergilipoopapi</title>
+    <title>vendavalsergiomateapi</title>
 </head>
 
 <body>
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="login-input">
                         <label for="password">Contraseña</label>
-                        <input type="text" name="password" required>
+                        <input type="password" name="password" required>
                     </div>
                 </div>
 

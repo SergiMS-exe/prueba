@@ -2,10 +2,10 @@
 session_start();
 if (isset($_SESSION['login'])) {
     $user = (array) $_SESSION['usuario'];
-    $resViajes = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/viajesconductor/" . $user['_id']);
+    $resViajes = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/viajesconductor/" . $user['_id']);
     $dataViajes = json_decode($resViajes);
 
-    $resViajesRes = file_get_contents("https://pruebasergilipoopapi.herokuapp.com/viajespasajero/" . $user['_id']);
+    $resViajesRes = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/viajespasajero/" . $user['_id']);
     $dataViajesRes = json_decode($resViajesRes);
 
     include "./includes/header.php";
@@ -18,7 +18,7 @@ if (isset($_SESSION['login'])) {
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <title>pruebasergilipoopapi - Mi cuenta</title>
+    <title>vendavalsergiomateapi - Mi cuenta</title>
 </head>
 
 <!--- Datos usuario --->
