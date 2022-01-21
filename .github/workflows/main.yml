@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy-webapp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: akhileshns/heroku-deploy@v3.8.9 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "pruebasergilipoopcliente" #Must be unique in Heroku
+          heroku_email: "sergi_mate@hotmail.com"
+          appdir: "cliente"
+  deploy-restapi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: akhileshns/heroku-deploy@v3.8.9 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "pruebasergilipoopapi" #Must be unique in Heroku
+          heroku_email: "sergi_mate@hotmail.com"
+          appdir: "api"
