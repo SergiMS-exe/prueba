@@ -1,30 +1,19 @@
 module.exports = function (app, gestorBD) {
   // Viajes de un pasajero
-  app.get("/viajespasajero/:id", function (req, res) {
-    let criterio = { _id: gestorBD.mongo.ObjectID(req.params.id) };
-    gestorBD.obtenerItem(criterio, "usuarios", function (resultUser) {
-      if (resultUser == null)
+  app.get("/articulosusuario/:email", function (req, res) {
+    let criterio = { vendedor: req.params.email };
+    gestorBD.obtenerItem(criterio, "articulos", function (resultProduct) {
+      if (resultProduct == null)
         res.send({
           Error: {
             status: 500,
-            data: "Se ha producido un error al obtener el usuario, intentelo de nuevo más tarde",
+            data: "Se ha producido un error al obtener el articulo, intentelo de nuevo más tarde",
           },
         });
       else {
-        let query = { id_pasajeros: req.params.id };
-        gestorBD.obtenerItem(query, "viajes", function (resultTravel) {
-          if (resultTravel == null)
-            res.send({
-              Error: {
-                status: 500,
-                data: "Se ha producido un error al obtener los viajes del usuario, intentelo de nuevo más tarde",
-              },
-            });
-          else
-            res.send({
-              status: 200,
-              data: { pasajero: resultUser, viajes: resultTravel },
-            });
+        res.send({
+          status: 200,
+          data: { articulos: resultProduct },
         });
       }
     });

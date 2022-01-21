@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "El usuario no existe";
         }
     } else {
-        echo "El usuario no existe";
+        echo "El usuario no existe pero na de na";
     }
 }
 

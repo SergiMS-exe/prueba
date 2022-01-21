@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['login'])) {
     $user = (array) $_SESSION['usuario'];
-    $resViajes = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/viajesconductor/" . $user['_id']);
+    $resViajes = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/articulosusuario/" . $user['email']);
     $dataViajes = json_decode($resViajes);
 
     $resViajesRes = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/viajespasajero/" . $user['_id']);
@@ -18,7 +18,7 @@ if (isset($_SESSION['login'])) {
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <title>vendavalsergiomateapi - Mi cuenta</title>
+    <title>Vendaval - Mi cuenta</title>
 </head>
 
 <!--- Datos usuario --->
