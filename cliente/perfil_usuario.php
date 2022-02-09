@@ -26,70 +26,31 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['token'])) {
 
     <!--- TODO: Foto de perfil --->
 
-    <!--- Tabla de viajes como conductor --->
-    <?php if (isset($dataViajes) && sizeof($dataViajes->data->viajes) > 0) { ?>
-<h3 style="margin-top:40px; margin-left:10px">Mis viajes</h3>
+
+<h3 style="margin-top:40px; margin-left:10px">Mis sofas</h3>
 <table>
-    <tr>
-        <th>Fecha Salida</th>
-        <th>Hora Salida</th>
-        <th>Lugar Salida</th>
-        <th>Lugar Llegada</th>
-        <th>Precio</th>
-    </tr>
-    <?php foreach ($dataViajes->data->viajes as $viaje) { ?>
         <tr>
-            <td><?php echo gmdate("d-m-Y", $viaje->fecha_salida); ?></td>
-            <td><?php echo gmdate("H:i", $viaje->hora_salida); ?></td>
-            <td><?php echo $viaje->lugar_salida; ?></td>
-            <td><?php echo $viaje->lugar_llegada; ?></td>
-            <td><?php echo $viaje->price;
-                echo $viaje->currency ?></td>
-            <form action="./servicios/sofa/delete_viaje.php" method="POST">
-                <input type="hidden" value="<?php echo $viaje->_id ?>" name="id">
-                <th><input type="submit" value="Eliminar"></th>
-            </form>
-            <form action="./servicios/sofa/edit_viaje.php" method="GET">
-                <input type="hidden" value="<?php echo $viaje->_id ?>" name="id">
-                <th><input type="submit" value="Editar"></th>
-            </form>
+            <th>Propietario</th>
+            <th>Direccion</th>
+            <th>Latitud</th>
+            <th>Longitud</th>
+            <th>Disponible Desde</th>
         </tr>
-    <?php } ?>
-</table>
-<?php } else { ?> <h3 style="margin-top:40px; margin-left:10px">No tienes ningún viaje creado.</h3> <?php } ?>
-
-<!--- Tabla de viajes como pasajero --->
-<?php if (isset($dataViajesRes) && sizeof($dataViajesRes->data->viajes) > 0) { ?>
-    <h3 style="margin-top:40px; margin-left:10px">Viajes reservados</h3>
-    <table>
-        <tr>
-            <th>Conductor</th>
-            <th>Fecha Salida</th>
-            <th>Hora Salida</th>
-            <th>Lugar Salida</th>
-            <th>Lugar Llegada</th>
-        </tr>
-        <?php foreach ($dataViajesRes->data->viajes as $viaje) { 
+        <?php
+        foreach ($sofas as $sofa) {
             
-            // Me traigo el nombre del conductor
-            $data = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/users/" . $viaje->id_conductor);
-            $nombre_conductor = json_decode($data)->data->usuarios[0]->nombre;
-            ?>
+        ?>
             <tr>
-                <td><?php echo $nombre_conductor; ?></td>
-                <td><?php echo gmdate("d-m-Y", $viaje->fecha_salida); ?></td>
-                <td><?php echo gmdate("H:i", $viaje->hora_salida); ?></td>
-                <td><?php echo $viaje->lugar_salida; ?></td>
-                <td><?php echo $viaje->lugar_llegada; ?></td>
+                <td><?php echo $sofa->email_propietario; ?></td>
+                <td><?php echo $sofa->direccion; ?></td>
+                <td><?php echo $sofa->latitud; ?></td>
+                <td><?php echo $sofa->longitud; ?></td>
+                <td><?php echo gmdate("d-m-Y", $sofa->fecha_inicio_disponible); ?></td>
+                <form action="servicios/sofa/detalles_sofa.php" method="GET">
+                    <input type="hidden" value="<?php echo $sofa->_id ?>" name="id">
+                    <td><input type="submit" value="Detalles"></td>
+                </form>
             </tr>
-        <?php } ?>
-    </table>
-<?php } else { ?> <h3 style="margin-top:40px; margin-left:10px">No tienes ningún viaje reservado.</h3> <?php }
+        <?php }?>
 
-?>
 
-<!--- TODO: Boton a conversación --->
-<form action="./servicios/mensajeria/lista_conversaciones.php" method="GET">
-                <input type="hidden" value="<?php echo $user['_id']?>" name="id">
-                <input type="submit" value="Tus conversaciones">
-</form>
