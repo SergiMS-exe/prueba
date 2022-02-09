@@ -15,14 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     curl_setopt($ch, CURLOPT_POST, true);
 
     $data = array(
-        "id_pasajeros" => [],
-        "id_conductor" => trim($_POST['id_conductor']),
-        "fecha_salida" => strtotime($_POST['fecha_salida']),
-        "hora_salida" => strtotime($_POST['hora_salida']),
-        "lugar_salida" => trim($_POST['lugar_salida']),
-        "lugar_llegada" => trim($_POST['lugar_llegada']),
-        "price" => intval($_POST['price']),
-        "currency" => 'EUR'
+        "fotos" => [],
+        "email_propietario" => trim($_POST['email_propietario']),
+        "direccion" => trim($_POST['direccion']),
+        "latitud" => trim($_POST['latitud']),
+        "longitud" => trim($_POST['longitud']),
     );
 
     $json = json_encode($data);
