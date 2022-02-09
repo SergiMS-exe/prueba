@@ -1,6 +1,6 @@
 <?php
 session_start();
-$dataViajes = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/listaviajes");
+$dataViajes = file_get_contents("https://blablacariw.herokuapp.com/travels");
 $viajes = json_decode($dataViajes)->data->viajes;
 
 include './includes/header.php';
@@ -21,8 +21,8 @@ include './includes/header.php';
         <?php
         foreach ($viajes as $viaje) {
             // Me traigo el nombre del conductor
-            $data = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/findUserById/" . $viaje->id_conductor);
-            $nombre_conductor = json_decode($data)->data->usuario[0]->nombre;
+            $data = file_get_contents("https://blablacariw.herokuapp.com/users/" . $viaje->id_conductor);
+            $nombre_conductor = json_decode($data)->data->usuarios[0]->nombre;
         ?>
             <tr>
                 <td><?php echo $nombre_conductor; ?></td>

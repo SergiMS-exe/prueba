@@ -1,6 +1,21 @@
+const { verify } = require("../middlewares/auth");
+
 module.exports = function (app, gestorBD) {
-  app.get("/", function (req, res) {
-    gestorBD.obtenerItem({}, "usuarios", function (usuarios) {
+  app.get("/users", function (req, res) {
+    let name = req.query.name;
+    let surname = req.query.surname;
+    let email = req.query.email;
+    if (name == null) name = "";
+    if (surname == null) surname = "";
+    if (email == null) email = "";
+    let criterio = {
+      $and: [
+        { nombre: { $regex: ".*" + name + ".*", $options: "i" } },
+        { apellido: { $regex: ".*" + surname + ".*", $options: "i" } },
+        { email: { $regex: ".*" + email + ".*", $options: "i" } },
+      ],
+    };
+    gestorBD.obtenerItem(criterio, "usuarios", function (usuarios) {
       if (usuarios == null) {
         res.send({
           Error: {
@@ -14,7 +29,7 @@ module.exports = function (app, gestorBD) {
     });
   });
 
-  app.post("/users/add", function (req, res) {
+  app.post("/users", function (req, res) {
     //TODO hacer validador y encriptar la contraseña
     gestorBD.insertarItem(req.body, "usuarios", function (usuario) {
       if (usuario == null) {
@@ -33,7 +48,7 @@ module.exports = function (app, gestorBD) {
     });
   });
 
-  app.delete("/users/delete", function (req, res) {
+  app.delete("/users", function (req, res) {
     let criterio = { _id: gestorBD.mongo.ObjectID(req.body.id) };
     gestorBD.eliminarItem(criterio, "usuarios", function (result) {
       if (result == null) {
@@ -52,7 +67,8 @@ module.exports = function (app, gestorBD) {
     });
   });
 
-  app.get("/users/edit/:id", function (req, res) {
+  app.get("/users/:id", function (req, res) {
+    console.log(req);
     let criterio = { _id: gestorBD.mongo.ObjectID(req.params.id) };
     gestorBD.obtenerItem(criterio, "usuarios", function (usuario) {
       if (usuario == null) {
@@ -69,7 +85,7 @@ module.exports = function (app, gestorBD) {
     });
   });
 
-  app.put("/users/edit/:id", function (req, res) {
+  app.put("/users/:id", function (req, res) {
     let criterio = { _id: gestorBD.mongo.ObjectID(req.params.id) };
     let nuevoUsuario = req.body;
     gestorBD.modificarItem(
@@ -94,58 +110,41 @@ module.exports = function (app, gestorBD) {
     );
   });
 
-  app.get("/findUser", function (req, res) {
-    let query = req.query.namesurnameuser;
-    let criterio = {
-      $or: [
-        { nombre: { $regex: ".*" + query + ".*" } },
-        { apellido: { $regex: ".*" + query + ".*" } },
-      ],
-    };
-    gestorBD.obtenerItem(criterio, "usuarios", function (usuarios) {
-      if (usuarios == null) {
-        res.send({
-          Error: {
-            status: 500,
-            data: "Se ha producido un error al obtener la lista de usuarios, intentelo de nuevo más tarde",
-          },
-        });
-      } else {
-        res.send({ status: 200, data: { usuarios: usuarios } });
-      }
-    });
-  });
+  app.get("/verify", (req, res) => {
+    const token = req.get("Authorization");
+    const isVerified = verify(token);
+    let alreadyRegistered = true;
 
-  app.get("/findUserByEmail/:email", function (req, res) {
-    let email = req.params.email;
-    let criterio = { email: email };
-    gestorBD.obtenerItem(criterio, "usuarios", function (usuario) {
-      if (usuario == null) {
-        res.send({
-          Error: {
-            status: 500,
-            data: "Se ha producido un error al obtener el usuario, intentelo de nuevo más tarde o con otro email",
-          },
-        });
-      } else {
-        res.send({ status: 200, data: { usuarios: usuario } });
-      }
-    });
-  });
-
-  app.get("/findUserById/:id", function (req, res) {
-    let criterio = { _id: gestorBD.mongo.ObjectID(req.params.id) };
-    gestorBD.obtenerItem(criterio, "usuarios", function (usuario) {
-      if (usuario == null) {
-        res.send({
-          Error: {
-            status: 500,
-            data: "Se ha producido un error al obtener el usuario, intentelo de nuevo más tarde o con otro email",
-          },
-        });
-      } else {
-        res.send({ status: 200, data: { usuario: usuario } });
-      }
-    });
+    if (!isVerified) {
+      res.send({ status: 403, data: { msg: "Acceso denegado" } });
+    } else {
+      gestorBD.obtenerItem({ email: req.query.email }, "usuarios", function (usuario) {
+          if (usuario.length != 0) {
+            res.send({ status: 200, data: {alreadyRegistered, isVerified, usuario } });
+          } else {
+            const nuevoUsuario = {
+              email: req.query.email,
+              nombre: req.query.nombre,
+              apellido: req.query.apellido
+            };
+            gestorBD.insertarItem(nuevoUsuario, "usuarios", function (usuario) {
+              if (usuario == null) {
+                res.send({
+                  Error: {
+                    status: 500,
+                    data: "Se ha producido un error interno",
+                  },
+                });
+              } else {
+                res.send({
+                  status: 200,
+                  data: { isVerified, usuario },
+                });
+              }
+            });
+          }
+        }
+      );
+    }
   });
 };

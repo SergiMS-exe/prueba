@@ -1,8 +1,12 @@
 <?php
 session_start();
+if (isset($_SESSION['msg'])) {
+    echo $_SESSION['msg'];
+    unset($_SESSION['msg']);
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $data = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/findUserByEmail/" . $_POST['email']);
+    $data = file_get_contents("https://blablacariw.herokuapp.com/users?email=" . $_POST['email']);
     $user = json_decode($data);
 
     if (!empty($user->data->usuarios)) {
@@ -22,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "El usuario no existe";
         }
     } else {
-        echo "El usuario no existe pero na de na";
+        echo "El usuario no existe";
     }
 }
 
@@ -37,22 +41,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <title>vendavalsergiomateapi</title>
+    <title>BlablacarIW</title>
 </head>
 
 <body>
     <div class="login-box">
         <div class="login-card">
             <p class="login-text">Inicio de sesión</p>
-            <form action="login.php" method="POST">
+            <!-- <form action="login.php" method="POST">
                 <div class="login-inputs">
                     <div class="login-input">
                         <label for="email">Email</label>
-                        <input type="text" name="email" required>
+                        <input type="text" name="email">
                     </div>
                     <div class="login-input">
                         <label for="password">Contraseña</label>
-                        <input type="password" name="password" required>
+                        <input type="password" name="password">
                     </div>
                 </div>
 
@@ -61,7 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button onclick="window.location.href='./servicios/google/login.php'" class="button red-button">Google</a>
                 </div>
             </form>
-            <a href="./registro.php">Registrarse</a>
+            <a href="./registro.php">Registrarse</a> -->
+            <div class="login-botones">
+                <button onclick="window.location.href='./servicios/google/login.php'" class="button red-button">Google</a>
+            </div>
         </div>
     </div>
 </body>

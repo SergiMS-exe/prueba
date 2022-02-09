@@ -1,20 +1,19 @@
 <?php 
-    $resTravel = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/travels/edit/".$_GET['id']);
+    $resTravel = file_get_contents("https://blablacariw.herokuapp.com/travels/".$_GET['id']);
     $dataTravel = json_decode($resTravel);
     $viaje = $dataTravel->data->viaje[0];
-
-    $resConductor = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/users/edit/".$viaje->id_conductor);
+    
+    $resConductor = file_get_contents("https://blablacariw.herokuapp.com/users/".$dataTravel->data->viajes[0]->id_conductor);
     $dataConductor = json_decode($resConductor);
-    $conductor = $dataConductor->data->usuario[0];
+    $conductor = $dataConductor->data->usuarios[0];
 
-    $resConversaciones = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/conversaciones/".$_GET['id_local']);
+    $resConversaciones = file_get_contents("https://blablacariw.herokuapp.com/conversaciones/".$_GET['id_local']);
     $dataConversaciones = json_decode($resConversaciones);
 
     
 
     error_reporting(E_ERROR | E_PARSE);
 
-    include '../paypal/config.php'
 ?>
 
 <h1>Detalles del viaje</h1>
@@ -25,11 +24,17 @@
     else
     echo "<img src='".$usuario->foto."' style='width:30px;height:30px;'?></td>";
 ?>
-<h3>Fecha: <?php echo $viaje->fecha_salida?></h3>
-<h3>Hora de salida: <?php echo $viaje->hora_salida?></h3>
+<h3>Fecha: <?php echo gmdate("d-m-Y", $viaje->fecha_salida);?></h3>
+<h3>Hora de salida: <?php gmdate("H:i", $viaje->hora_salida); ?></h3>
 <h3>Precio: <?php echo $viaje->price; echo $viaje->currency?></h3>
-<h3>Contactar con el conductor: </h3>
 
+
+<form action="reservar_viaje.php" method="POST">
+    <input type="hidden" value="<?php echo $viaje->_id ?>" name="id">
+    <td><input type="submit" value="Reservar"></td>
+</form>
+
+<h3>Contactar con el conductor: </h3>
 <?php
     if (in_array($conductor, $dataConversaciones->data->usuarios)) { ?>
             <form action="../mensajeria/ver_conversacion.php" method="GET">
@@ -46,10 +51,3 @@
             </form>
         <?php }
     ?>
-
-
-
-
-
-
-<?php include '../paypal/paypalCheckout.php'?>

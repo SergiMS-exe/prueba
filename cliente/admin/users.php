@@ -1,5 +1,5 @@
 <?php
-$dataUsers = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/");
+$dataUsers = file_get_contents("https://blablacariw.herokuapp.com/users");
 $users = json_decode($dataUsers)->data->usuarios;
 
 include './includes/header.php';

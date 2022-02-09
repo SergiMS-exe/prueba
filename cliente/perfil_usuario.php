@@ -1,12 +1,14 @@
 <?php
 session_start();
-if (isset($_SESSION['login'])) {
+if (isset($_SESSION['usuario']) && isset($_SESSION['token'])) {
     $user = (array) $_SESSION['usuario'];
-    $resViajes = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/articulosusuario/" . $user['email']);
+    $resViajes = file_get_contents("https://blablacariw.herokuapp.com/travels?driver=" . $user['_id']);
     $dataViajes = json_decode($resViajes);
+    var_dump($dataViajes);
 
-    $resViajesRes = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/viajespasajero/" . $user['_id']);
+    $resViajesRes = file_get_contents("https://blablacariw.herokuapp.com/travels?passenger=" . $user['_id']);
     $dataViajesRes = json_decode($resViajesRes);
+    var_dump($dataViajesRes);
 
     include "./includes/header.php";
 } else {
@@ -18,7 +20,7 @@ if (isset($_SESSION['login'])) {
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Vendaval - Mi cuenta</title>
+    <title>BlablacarIW - Mi cuenta</title>
 </head>
 
 <!--- Datos usuario --->
@@ -35,7 +37,10 @@ if (isset($_SESSION['login'])) {
 <h3 style="margin-top:40px; margin-left:10px">Mis viajes</h3>
 <table>
     <tr>
-        <th>Titulo</th>
+        <th>Fecha Salida</th>
+        <th>Hora Salida</th>
+        <th>Lugar Salida</th>
+        <th>Lugar Llegada</th>
         <th>Precio</th>
     </tr>
     <?php foreach ($dataViajes->data->viajes as $viaje) { ?>
@@ -70,9 +75,14 @@ if (isset($_SESSION['login'])) {
             <th>Lugar Salida</th>
             <th>Lugar Llegada</th>
         </tr>
-        <?php foreach ($dataViajes->data->viajes as $viaje) { ?>
+        <?php foreach ($dataViajesRes->data->viajes as $viaje) { 
+            
+            // Me traigo el nombre del conductor
+            $data = file_get_contents("https://blablacariw.herokuapp.com/users/" . $viaje->id_conductor);
+            $nombre_conductor = json_decode($data)->data->usuarios[0]->nombre;
+            ?>
             <tr>
-                <td><?php echo $viaje->nombre_conductor; ?></td>
+                <td><?php echo $nombre_conductor; ?></td>
                 <td><?php echo gmdate("d-m-Y", $viaje->fecha_salida); ?></td>
                 <td><?php echo gmdate("H:i", $viaje->hora_salida); ?></td>
                 <td><?php echo $viaje->lugar_salida; ?></td>
@@ -80,7 +90,9 @@ if (isset($_SESSION['login'])) {
             </tr>
         <?php } ?>
     </table>
-<?php } else { ?> <h3 style="margin-top:40px; margin-left:10px">No tienes ningún viaje reservado.</h3> <?php } ?>
+<?php } else { ?> <h3 style="margin-top:40px; margin-left:10px">No tienes ningún viaje reservado.</h3> <?php }
+
+?>
 
 <!--- TODO: Boton a conversación --->
 <form action="./servicios/mensajeria/lista_conversaciones.php" method="GET">

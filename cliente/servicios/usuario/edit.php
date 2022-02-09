@@ -1,7 +1,7 @@
 <?php
     session_start();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $url = 'https://vendavalsergiomateapi.herokuapp.com/users/edit/'.$_POST['id'];
+        $url = 'https://blablacariw.herokuapp.com/users/'.$_POST['id'];
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -36,7 +36,7 @@
         header('Location: ../index.php');
     }
     else {
-        $res = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/users/edit/".$_GET['id']);
+        $res = file_get_contents("https://blablacariw.herokuapp.com/users/".$_GET['id']);
         $data = json_decode($res); 
         include '../../includes/header.php';
     }

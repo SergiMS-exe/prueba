@@ -1,7 +1,7 @@
 <?php
     session_start();
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $url = 'https://vendavalsergiomateapi.herokuapp.com/messages/add';
+        $url = 'https://blablacariw.herokuapp.com/messages/add';
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -31,17 +31,20 @@
         $_SESSION['server_msg'] = $result->data->msg;
         header('Location: ver_conversacion.php?id_ajeno='.$aux2.'&id_local='.$aux);
     } else{
-        $res = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/conversacion?id1=".$_GET['id_local']."&id2=".$_GET['id_ajeno']);
+        $string = "https://blablacariw.herokuapp.com/conversations/messages?id1=".$_GET['id_local']."&id2=".$_GET['id_ajeno'];
+        var_dump($string);
+        $res = file_get_contents("https://blablacariw.herokuapp.com/conversations/messages?id1=".$_GET['id_local']."&id2=".$_GET['id_ajeno']);
         $data = json_decode($res);
-        $resUser = file_get_contents("https://vendavalsergiomateapi.herokuapp.com/users/edit/".$_GET['id_ajeno']);
+        $resUser = file_get_contents("https://blablacariw.herokuapp.com/users/".$_GET['id_ajeno']);
         $dataUser = json_decode($resUser);
+        var_dump($dataUser);
     }
 
 ?>
 
 <head><link rel="stylesheet" href="../css/styles.css"></head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<h1 align="center">Conversación con <?php echo $dataUser->data->usuario[0]->nombre." ".$dataUser->data->usuario[0]->apellido;?></h1>
+<h1 align="center">Conversación con <?php echo $dataUser->data->usuario[0]->email;?></h1>
 
 <table style="width:60%" align="center">
     
