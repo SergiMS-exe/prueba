@@ -2,8 +2,8 @@
 require_once '../../vendor/autoload.php';
 session_start();
 
-$clienteID = '355043429392-p0keh6com6lldp10dkdificgl44f2unc.apps.googleusercontent.com';
-$clientSecret = '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';
+$clienteID = '392248596012-t846ug2h9503p1h3f8p9b82vhq2moveh.apps.googleusercontent.com';
+$clientSecret = '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';
 $redirectUrl = 'http://exameniwsergiomatecliente.herokuapp.com/servicios/google/login.php';
 
 // Nuevo cliente request a Google
