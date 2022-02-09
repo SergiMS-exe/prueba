@@ -2,11 +2,11 @@
 
 session_start();
 
-$origen = trim($_GET['origen']);
+$direccion = trim($_GET['direccion']);
 $destino = trim($_GET['destino']);
 $fecha = strtotime($_GET['fecha']);
 
-$res = file_get_contents("http://exameniwsergiomateapi.herokuapp.com/couches?origen=" . $origen . "&destino=" . $destino);
+$res = file_get_contents("http://exameniwsergiomateapi.herokuapp.com/couches?direccion=" . $direccion);
 $data = json_decode($res);
 $viajes = array();
 

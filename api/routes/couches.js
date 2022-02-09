@@ -11,7 +11,7 @@ module.exports = function (app, gestorBD) {
       $and: [
         { lugar_salida: { $regex: ".*" + origen + ".*", $options: "i" } },
         { lugar_llegada: { $regex: ".*" + destino + ".*", $options: "i" } },
-        { id_pasajeros: { $in: [ req.query.passenger ] } }
+        { id_pasajeros: { $in: [req.query.passenger] } }
       ]
     };
 
@@ -47,27 +47,16 @@ module.exports = function (app, gestorBD) {
 
   // Todos los sofas
   app.get("/couches", function (req, res) {
-    let origen = req.query.origen;
+    let direccion = req.query.direccion;
     let destino = req.query.destino;
 
-    if (origen == null) origen = "";
+    let criterio = {};
+
+    if (direccion != null)
+      criterio = { direccion: { $regex: ".*" + direccion + ".*", $options: "i" } };
     if (destino == null) destino = "";
 
-    let criterio = {
-      $and: [
-        { lugar_salida: { $regex: ".*" + origen + ".*", $options: "i" } },
-        { lugar_llegada: { $regex: ".*" + destino + ".*", $options: "i" } }
-      ]
-    };
-
-    let conductor = req.query.driver;
-    let pasajero = req.query.passenger;
-
-    if (conductor != null) {
-      sofasConductor(req, res);
-    } else if (pasajero != null) {
-      sofasPasajero(req, res);
-    } else {
+    
       gestorBD.obtenerItem(criterio, "sofas", function (sofas) {
         if (sofas == null)
           res.send({
@@ -80,7 +69,7 @@ module.exports = function (app, gestorBD) {
           res.send({ status: 200, data: { sofas: sofas } });
         }
       });
-    }
+    
   });
 
   //sofas con el id de un conductor concreto

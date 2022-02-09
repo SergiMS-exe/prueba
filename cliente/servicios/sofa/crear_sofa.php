@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "direccion" => trim($_POST['direccion']),
         "latitud" => trim($_POST['latitud']),
         "longitud" => trim($_POST['email_propietario']),
-        "fecha_disponible" => strtotime($_POST['fecha_disponible']),
+        "fecha_inicio_disponible" => strtotime($_POST['fecha_inicio_disponible']),
+        "fecha_fin_disponible" => strtotime($_POST['fecha_fin_disponible'])
     );
 
     $json = json_encode($data);
@@ -60,7 +61,10 @@ include "../../includes/header.php";
                         <input type="text" name="longitud" required>
                     </div>
                     <div class="col">
-                        <input type="date" name="disponible" required>
+                        <input type="date" name="fecha_inicio_disponible" required>
+                    </div>
+                    <div class="col">
+                        <input type="date" name="fecha_fin_disponible" required>
                     </div>
                     <input type="hidden" value=<?php echo $_SESSION['usuario']->email ?> name="email_propietario">
                     <div class="centro">

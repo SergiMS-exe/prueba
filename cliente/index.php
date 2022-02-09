@@ -11,11 +11,9 @@ include 'includes/header.php';
 ?>
 
 <div class="container">
-    <form action="./servicios/sofa/buscar_viajes.php" method="GET">
+    <form action="./servicios/sofa/buscar_sofas.php" method="GET">
         <div class="search__box">
-            <input type="text" name="origen" placeholder="Origen">
-            <input type="text" name="destino" placeholder="Destino">
-            <input type="date" name="fecha">
+            <input type="text" name="direccion" placeholder="Direccion">
             <input type="submit" value="Buscar">
         </div>
     </form>
