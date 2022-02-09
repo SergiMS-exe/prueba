@@ -22,7 +22,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.8.9 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "vendavalsergiomatecliente" #Must be unique in Heroku
+          heroku_app_name: "exameniwsergiomatecliente" #Must be unique in Heroku
           heroku_email: "sergi_mate@hotmail.com"
           appdir: "cliente"
   deploy-restapi:
@@ -33,6 +33,6 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.8.9 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "vendavalsergiomateapi" #Must be unique in Heroku
+          heroku_app_name: "exameniwsergiomateapi" #Must be unique in Heroku
           heroku_email: "sergi_mate@hotmail.com"
           appdir: "api"
