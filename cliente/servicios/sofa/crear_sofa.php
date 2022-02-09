@@ -61,9 +61,11 @@ include "../../includes/header.php";
                         <input type="text" name="longitud" required>
                     </div>
                     <div class="col">
+                        <label for="fecha_inicio_disponible">fecha inicio</label>
                         <input type="date" name="fecha_inicio_disponible" required>
                     </div>
                     <div class="col">
+                        <label for="fecha_fin_disponible">fecha fin</label>
                         <input type="date" name="fecha_fin_disponible" required>
                     </div>
                     <input type="hidden" value=<?php echo $_SESSION['usuario']->email ?> name="email_propietario">

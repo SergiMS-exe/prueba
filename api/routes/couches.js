@@ -66,7 +66,8 @@ module.exports = function (app, gestorBD) {
             },
           });
         else {
-          res.send({ status: 200, data: { sofas: sofas } });
+          let sofasOrdenados = sofas.slice().sort((a,b)=>a.fecha_inicio_disponible-b.fecha_inicio_disponible)
+          res.send({ status: 200, data: { sofas: sofasOrdenados } });
         }
       });
     

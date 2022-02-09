@@ -31,35 +31,31 @@ if (isset($_SESSION['viajes_encontrados']) && !empty($_SESSION['viajes_encontrad
 } else {
     unset($_SESSION['viajes_encontrados']);
     $res = file_get_contents("http://exameniwsergiomateapi.herokuapp.com/couches");
-    $viajes = json_decode($res)->data->viajes;
+    $sofas = json_decode($res)->data->sofas;
 } ?>
 <section class="container">
 
 
     <table>
         <tr>
-            <th>Conductor</th>
-            <th>Fecha Salida</th>
-            <th>Hora Salida</th>
-            <th>Lugar Salida</th>
-            <th>Lugar Llegada</th>
-            <th>Precio</th>
+            <th>Propietario</th>
+            <th>Direccion</th>
+            <th>Latitud</th>
+            <th>Longitud</th>
+            <th>Disponible Desde</th>
         </tr>
         <?php
-        foreach ($viajes as $viaje) {
-            // Me traigo el nombre del conductor
-            $data = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/users/" . $viaje->id_conductor);
-            $nombre_conductor = json_decode($data)->data->usuario[0]->nombre;
+        foreach ($sofas as $sofa) {
+            
         ?>
             <tr>
-                <td><?php echo $nombre_conductor; ?></td>
-                <td><?php echo gmdate("d-m-Y", $viaje->fecha_salida); ?></td>
-                <td><?php echo gmdate("H:i", $viaje->hora_salida); ?></td>
-                <td><?php echo $viaje->lugar_salida; ?></td>
-                <td><?php echo $viaje->lugar_llegada; ?></td>
-                <td><?php echo $viaje->price; ?>€</td>
-                <form action="servicios/sofa/detalles_viaje.php" method="GET">
-                    <input type="hidden" value="<?php echo $viaje->_id ?>" name="id">
+                <td><?php echo $sofa->email_propietario; ?></td>
+                <td><?php echo $sofa->direccion; ?></td>
+                <td><?php echo $sofa->latitud; ?></td>
+                <td><?php echo $sofa->longitud; ?></td>
+                <td><?php echo gmdate("d-m-Y", $sofa->fecha_inicio_disponible); ?></td>
+                <form action="servicios/sofa/detalles_sofa.php" method="GET">
+                    <input type="hidden" value="<?php echo $sofa->_id ?>" name="id">
                     <td><input type="submit" value="Detalles"></td>
                 </form>
             </tr>
