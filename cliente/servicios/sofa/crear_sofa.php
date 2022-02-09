@@ -47,7 +47,7 @@ include "../../includes/header.php";
         <div class="login-card">
             <p class="login-text">Oferta tu sofa</p>
 
-            <form action="crear_viaje.php" method="POST">
+            <form action="crear_sofa.php" method="POST">
                 <div class="login-inputs">
                     <div class="login-input">
                         <label for="lugar_saluda">Direccion</label>
