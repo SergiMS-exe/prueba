@@ -19,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "email_propietario" => trim($_POST['email_propietario']),
         "direccion" => trim($_POST['direccion']),
         "latitud" => trim($_POST['latitud']),
-        "longitud" => trim($_POST['longitud']),
+        "longitud" => trim($_POST['email_propietario']),
+        "fecha_disponible" => strtotime($_POST['fecha_disponible']),
     );
 
     $json = json_encode($data);
@@ -57,6 +58,9 @@ include "../../includes/header.php";
                     <div class="login-input">
                         <label for="longitud">Longitud</label>
                         <input type="text" name="longitud" required>
+                    </div>
+                    <div class="col">
+                        <input type="date" name="disponible" required>
                     </div>
                     <input type="hidden" value=<?php echo $_SESSION['usuario']->email ?> name="email_propietario">
                     <div class="centro">
