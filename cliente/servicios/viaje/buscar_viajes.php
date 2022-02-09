@@ -6,7 +6,7 @@ $origen = trim($_GET['origen']);
 $destino = trim($_GET['destino']);
 $fecha = strtotime($_GET['fecha']);
 
-$res = file_get_contents("http://blablacariw.herokuapp.com/travels?origen=" . $origen . "&destino=" . $destino);
+$res = file_get_contents("http://exameniwsergiomateapi.herokuapp.com/travels?origen=" . $origen . "&destino=" . $destino);
 $data = json_decode($res);
 $viajes = array();
 

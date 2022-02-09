@@ -32,7 +32,7 @@ if (isset($_SESSION['viajes_encontrados']) && !empty($_SESSION['viajes_encontrad
     $viajes = $_SESSION['viajes_encontrados'];
 } else {
     unset($_SESSION['viajes_encontrados']);
-    $res = file_get_contents("http://blablacariw.herokuapp.com/travels");
+    $res = file_get_contents("http://exameniwsergiomateapi.herokuapp.com/travels");
     $viajes = json_decode($res)->data->viajes;
 } ?>
 <section class="container">
@@ -50,7 +50,7 @@ if (isset($_SESSION['viajes_encontrados']) && !empty($_SESSION['viajes_encontrad
         <?php
         foreach ($viajes as $viaje) {
             // Me traigo el nombre del conductor
-            $data = file_get_contents("https://blablacariw.herokuapp.com/users/" . $viaje->id_conductor);
+            $data = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/users/" . $viaje->id_conductor);
             $nombre_conductor = json_decode($data)->data->usuario[0]->nombre;
         ?>
             <tr>

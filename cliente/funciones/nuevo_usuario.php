@@ -4,7 +4,7 @@ $nombre = $_SESSION['usuario']->usuario;
 $apellido = $_SESSION['usuario']->apellido;
 $email = $_SESSION['usuario']->email;
 
-$url = 'https://blablacariw.herokuapp.com/users';
+$url = 'https://exameniwsergiomateapi.herokuapp.com/users';
     
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);

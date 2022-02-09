@@ -1,6 +1,6 @@
 <?php
 session_start();
-$url = 'https://blablacariw.herokuapp.com/conversations/add';
+$url = 'https://exameniwsergiomateapi.herokuapp.com/conversations/add';
     
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

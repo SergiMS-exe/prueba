@@ -7,7 +7,7 @@ if (isset($_SESSION['server_msg'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $url = 'https://blablacariw.herokuapp.com/travels';
+    $url = 'https://exameniwsergiomateapi.herokuapp.com/travels';
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);

@@ -6,7 +6,7 @@ if (isset($_SESSION['msg'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $data = file_get_contents("https://blablacariw.herokuapp.com/users?email=" . $_POST['email']);
+    $data = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/users?email=" . $_POST['email']);
     $user = json_decode($data);
 
     if (!empty($user->data->usuarios)) {

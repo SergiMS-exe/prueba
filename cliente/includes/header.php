@@ -1,6 +1,6 @@
 <?php
 if (true)
-    $__DIR_NAME__ =   'http://blablacarclient.herokuapp.com/';
+    $__DIR_NAME__ =   'http://exameniwsergiomatecliente.herokuapp.com/';
 else $__DIR_NAME__ =  'http://localhost/'; ?>
 
 <!DOCTYPE html>

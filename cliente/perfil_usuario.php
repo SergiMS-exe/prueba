@@ -2,11 +2,11 @@
 session_start();
 if (isset($_SESSION['usuario']) && isset($_SESSION['token'])) {
     $user = (array) $_SESSION['usuario'];
-    $resViajes = file_get_contents("https://blablacariw.herokuapp.com/travels?driver=" . $user['_id']);
+    $resViajes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/travels?driver=" . $user['_id']);
     $dataViajes = json_decode($resViajes);
     var_dump($dataViajes);
 
-    $resViajesRes = file_get_contents("https://blablacariw.herokuapp.com/travels?passenger=" . $user['_id']);
+    $resViajesRes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/travels?passenger=" . $user['_id']);
     $dataViajesRes = json_decode($resViajesRes);
     var_dump($dataViajesRes);
 
@@ -78,7 +78,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['token'])) {
         <?php foreach ($dataViajesRes->data->viajes as $viaje) { 
             
             // Me traigo el nombre del conductor
-            $data = file_get_contents("https://blablacariw.herokuapp.com/users/" . $viaje->id_conductor);
+            $data = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/users/" . $viaje->id_conductor);
             $nombre_conductor = json_decode($data)->data->usuarios[0]->nombre;
             ?>
             <tr>

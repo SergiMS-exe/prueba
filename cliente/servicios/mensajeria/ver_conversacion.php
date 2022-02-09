@@ -1,7 +1,7 @@
 <?php
     session_start();
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $url = 'https://blablacariw.herokuapp.com/messages/add';
+        $url = 'https://exameniwsergiomateapi.herokuapp.com/messages/add';
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -31,11 +31,11 @@
         $_SESSION['server_msg'] = $result->data->msg;
         header('Location: ver_conversacion.php?id_ajeno='.$aux2.'&id_local='.$aux);
     } else{
-        $string = "https://blablacariw.herokuapp.com/conversations/messages?id1=".$_GET['id_local']."&id2=".$_GET['id_ajeno'];
+        $string = "https://exameniwsergiomateapi.herokuapp.com/conversations/messages?id1=".$_GET['id_local']."&id2=".$_GET['id_ajeno'];
         var_dump($string);
-        $res = file_get_contents("https://blablacariw.herokuapp.com/conversations/messages?id1=".$_GET['id_local']."&id2=".$_GET['id_ajeno']);
+        $res = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/conversations/messages?id1=".$_GET['id_local']."&id2=".$_GET['id_ajeno']);
         $data = json_decode($res);
-        $resUser = file_get_contents("https://blablacariw.herokuapp.com/users/".$_GET['id_ajeno']);
+        $resUser = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/users/".$_GET['id_ajeno']);
         $dataUser = json_decode($resUser);
         var_dump($dataUser);
     }

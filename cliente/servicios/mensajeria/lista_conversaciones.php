@@ -1,7 +1,7 @@
 <?php
     session_start();
     var_dump($_GET['id']);
-    $res = file_get_contents("https://blablacariw.herokuapp.com/conversations/".$_GET['id']);
+    $res = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/conversations/".$_GET['id']);
     $data = json_decode($res);
     
 ?>
