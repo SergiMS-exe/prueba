@@ -1,60 +1,20 @@
 module.exports = function (app, gestorBD) {
-  // sofas de un pasajero
-  function sofasPasajero(req, res) {
-    let origen = req.query.origen;
-    let destino = req.query.destino;
-
-    if (origen == null) origen = "";
-    if (destino == null) destino = "";
-
-    let query = {
-      $and: [
-        { lugar_salida: { $regex: ".*" + origen + ".*", $options: "i" } },
-        { lugar_llegada: { $regex: ".*" + destino + ".*", $options: "i" } },
-        { id_pasajeros: { $in: [req.query.passenger] } }
-      ]
-    };
-
-
-    let criterio = { _id: gestorBD.mongo.ObjectID(req.query.passenger) };
-
-    gestorBD.obtenerItem(criterio, "usuarios", function (resultUser) {
-      if (resultUser == null)
-        res.send({
-          Error: {
-            status: 500,
-            data: "Se ha producido un error al obtener el usuario, intentelo de nuevo más tarde",
-          },
-        });
-      else {
-        gestorBD.obtenerItem(query, "sofas", function (resultTravel) {
-          if (resultTravel == null)
-            res.send({
-              Error: {
-                status: 500,
-                data: "Se ha producido un error al obtener los sofas del usuario, intentelo de nuevo más tarde",
-              },
-            });
-          else
-            res.send({
-              status: 200,
-              data: { pasajero: resultUser, sofas: resultTravel },
-            });
-        });
-      }
-    });
-  };
+  
 
   // Todos los sofas
   app.get("/couches", function (req, res) {
     let direccion = req.query.direccion;
-    let destino = req.query.destino;
+    let id = req.query.id;
+    let prop = req.query.propietario;
 
     let criterio = {};
 
     if (direccion != null)
       criterio = { direccion: { $regex: ".*" + direccion + ".*", $options: "i" } };
-    if (destino == null) destino = "";
+    if (id != null)
+      criterio = { _id: gestorBD.mongo.ObjectID(id) };
+    if (id != null)
+      criterio = { email_propietario: prop };
 
     
       gestorBD.obtenerItem(criterio, "sofas", function (sofas) {

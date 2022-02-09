@@ -1,14 +1,8 @@
 <?php
 session_start();
 if (isset($_SESSION['usuario']) && isset($_SESSION['token'])) {
-    $user = (array) $_SESSION['usuario'];
-    $resViajes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/couches?driver=" . $user['_id']);
-    $dataViajes = json_decode($resViajes);
-    var_dump($dataViajes);
-
-    $resViajesRes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/couches?passenger=" . $user['_id']);
-    $dataViajesRes = json_decode($resViajesRes);
-    var_dump($dataViajesRes);
+    $res = file_get_contents("http://exameniwsergiomateapi.herokuapp.com/couches");
+    $sofas = json_decode($res)->data->sofas;
 
     include "./includes/header.php";
 } else {

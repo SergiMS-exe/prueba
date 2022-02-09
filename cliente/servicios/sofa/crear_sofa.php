@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "email_propietario" => trim($_POST['email_propietario']),
         "direccion" => trim($_POST['direccion']),
         "latitud" => trim($_POST['latitud']),
-        "longitud" => trim($_POST['email_propietario']),
+        "longitud" => trim($_POST['longitud']),
         "fecha_inicio_disponible" => strtotime($_POST['fecha_inicio_disponible']),
         "fecha_fin_disponible" => strtotime($_POST['fecha_fin_disponible'])
     );

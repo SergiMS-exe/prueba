@@ -26,10 +26,7 @@ app.set('db', 'mongodb://root:root@cluster0-shard-00-00.xrhm0.mongodb.net:27017,
 //Rutas/controladores por lógica
 require("./routes/users")(app, gestorBD);  // (app, param1, param2, etc.)
 require("./routes/couches")(app, gestorBD);
-require("./routes/wheater_api")(app, https);
-require("./routes/incidencias_api")(app, https);
-require("./routes/messages")(app, gestorBD);
-require("./routes/conversations")(app, gestorBD);
+require("./routes/bookings")(app, gestorBD);
 
 //Controlador en caso de 404
 app.get('*',function (req, res,next) {
