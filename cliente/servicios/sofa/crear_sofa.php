@@ -50,16 +50,16 @@ include "../../includes/header.php";
             <form action="crear_sofa.php" method="POST">
                 <div class="login-inputs">
                     <div class="login-input">
-                        <label for="lugar_saluda">Direccion</label>
+                        <label for="direccion">Direccion</label>
                         <input type="text" name="direccion" required>
                     </div>
                     <div class="login-input">
-                        <label for="lugar_llegada">Latitud</label>
+                        <label for="latitud">Latitud</label>
                         <input type="text" name="latitud" required>
                     </div>
                     <div class="login-input">
-                        <label for="lugar_llegada">Latitud</label>
-                        <input type="text" name="latitud" required>
+                        <label for="longitud">Longitud</label>
+                        <input type="text" name="longitud" required>
                     </div>
                     <input type="hidden" value=<?php echo $_SESSION['usuario']->email ?> name="email_propietario">
                     <div class="centro">
