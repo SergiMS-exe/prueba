@@ -1,5 +1,5 @@
 <?php 
-    $resTravel = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/travels/".$_GET['id']);
+    $resTravel = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/couches/".$_GET['id']);
     $dataTravel = json_decode($resTravel);
     $viaje = $dataTravel->data->viaje[0];
     

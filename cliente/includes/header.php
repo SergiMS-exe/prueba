@@ -31,7 +31,7 @@ else $__DIR_NAME__ =  'http://localhost/'; ?>
                             <?php } ?>
                         </li>
                         <li class="nav-item">
-                            <a href="../servicios/viaje/crear_viaje.php" class="nav-link">Publicar viaje</a>
+                            <a href="../servicios/sofa/crear_sofa.php" class="nav-link">Ofertar alojamiento</a>
                         </li>
                         <?php
 

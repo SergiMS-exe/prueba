@@ -11,7 +11,7 @@ include 'includes/header.php';
 ?>
 
 <div class="container">
-    <form action="./servicios/viaje/buscar_viajes.php" method="GET">
+    <form action="./servicios/sofa/buscar_viajes.php" method="GET">
         <div class="search__box">
             <input type="text" name="origen" placeholder="Origen">
             <input type="text" name="destino" placeholder="Destino">
@@ -32,7 +32,7 @@ if (isset($_SESSION['viajes_encontrados']) && !empty($_SESSION['viajes_encontrad
     $viajes = $_SESSION['viajes_encontrados'];
 } else {
     unset($_SESSION['viajes_encontrados']);
-    $res = file_get_contents("http://exameniwsergiomateapi.herokuapp.com/travels");
+    $res = file_get_contents("http://exameniwsergiomateapi.herokuapp.com/couches");
     $viajes = json_decode($res)->data->viajes;
 } ?>
 <section class="container">
@@ -60,7 +60,7 @@ if (isset($_SESSION['viajes_encontrados']) && !empty($_SESSION['viajes_encontrad
                 <td><?php echo $viaje->lugar_salida; ?></td>
                 <td><?php echo $viaje->lugar_llegada; ?></td>
                 <td><?php echo $viaje->price; ?>€</td>
-                <form action="servicios/viaje/detalles_viaje.php" method="GET">
+                <form action="servicios/sofa/detalles_viaje.php" method="GET">
                     <input type="hidden" value="<?php echo $viaje->_id ?>" name="id">
                     <td><input type="submit" value="Detalles"></td>
                 </form>

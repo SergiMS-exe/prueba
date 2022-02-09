@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $url = "https://exameniwsergiomateapi.herokuapp.com/travels/" . $_POST['id'];
+    $url = "https://exameniwsergiomateapi.herokuapp.com/couches/" . $_POST['id'];
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     header('Location: ../../perfil_usuario.php');
 } else {
-    $res = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/travels/" . $_GET['id']);
+    $res = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/couches/" . $_GET['id']);
     $data = json_decode($res);
     $resUsers = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/users");
     $dataUsers = json_decode($resUsers);

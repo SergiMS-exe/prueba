@@ -2,7 +2,7 @@
 $dataUsers = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/users");
 $users = json_decode($dataUsers)->data->usuarios;
 
-$dataViajes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/travels");
+$dataViajes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/couches");
 $viajes = json_decode($dataViajes)->data->viajes;
 
 include './includes/header.php';

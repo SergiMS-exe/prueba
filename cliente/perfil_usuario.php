@@ -2,11 +2,11 @@
 session_start();
 if (isset($_SESSION['usuario']) && isset($_SESSION['token'])) {
     $user = (array) $_SESSION['usuario'];
-    $resViajes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/travels?driver=" . $user['_id']);
+    $resViajes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/couches?driver=" . $user['_id']);
     $dataViajes = json_decode($resViajes);
     var_dump($dataViajes);
 
-    $resViajesRes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/travels?passenger=" . $user['_id']);
+    $resViajesRes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/couches?passenger=" . $user['_id']);
     $dataViajesRes = json_decode($resViajesRes);
     var_dump($dataViajesRes);
 
@@ -51,11 +51,11 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['token'])) {
             <td><?php echo $viaje->lugar_llegada; ?></td>
             <td><?php echo $viaje->price;
                 echo $viaje->currency ?></td>
-            <form action="./servicios/viaje/delete_viaje.php" method="POST">
+            <form action="./servicios/sofa/delete_viaje.php" method="POST">
                 <input type="hidden" value="<?php echo $viaje->_id ?>" name="id">
                 <th><input type="submit" value="Eliminar"></th>
             </form>
-            <form action="./servicios/viaje/edit_viaje.php" method="GET">
+            <form action="./servicios/sofa/edit_viaje.php" method="GET">
                 <input type="hidden" value="<?php echo $viaje->_id ?>" name="id">
                 <th><input type="submit" value="Editar"></th>
             </form>

@@ -1,12 +1,12 @@
 <?php 
     session_start();
-    $res = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/travels/" . $_POST['id']);
+    $res = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/couches/" . $_POST['id']);
     $data = json_decode($res);
 
     array_push($data->data->viaje[0]->id_pasajeros, $_SESSION['usuario']->_id);
 
 
-    $url = "https://exameniwsergiomateapi.herokuapp.com/travels/" . $_POST['id'];
+    $url = "https://exameniwsergiomateapi.herokuapp.com/couches/" . $_POST['id'];
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);

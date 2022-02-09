@@ -1,6 +1,6 @@
 <?php
 session_start();
-$dataViajes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/travels");
+$dataViajes = file_get_contents("https://exameniwsergiomateapi.herokuapp.com/couches");
 $viajes = json_decode($dataViajes)->data->viajes;
 
 include './includes/header.php';
@@ -31,7 +31,7 @@ include './includes/header.php';
                 <td><?php echo $viaje->lugar_salida; ?></td>
                 <td><?php echo $viaje->lugar_llegada; ?></td>
                 <td><?php echo $viaje->price; ?></td>
-                <form action="../servicios/viaje/delete_viaje.php" method="POST">
+                <form action="../servicios/sofa/delete_viaje.php" method="POST">
                     <input type="hidden" value="<?php echo $viaje->_id ?>" name="id">
                     <th><input type="submit" value="Eliminar"></th>
                 </form>

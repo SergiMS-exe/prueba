@@ -1,6 +1,6 @@
 module.exports = function (app, gestorBD) {
-  // Viajes de un pasajero
-  function viajesPasajero(req, res) {
+  // sofas de un pasajero
+  function sofasPasajero(req, res) {
     let origen = req.query.origen;
     let destino = req.query.destino;
 
@@ -27,26 +27,26 @@ module.exports = function (app, gestorBD) {
           },
         });
       else {
-        gestorBD.obtenerItem(query, "viajes", function (resultTravel) {
+        gestorBD.obtenerItem(query, "sofas", function (resultTravel) {
           if (resultTravel == null)
             res.send({
               Error: {
                 status: 500,
-                data: "Se ha producido un error al obtener los viajes del usuario, intentelo de nuevo más tarde",
+                data: "Se ha producido un error al obtener los sofas del usuario, intentelo de nuevo más tarde",
               },
             });
           else
             res.send({
               status: 200,
-              data: { pasajero: resultUser, viajes: resultTravel },
+              data: { pasajero: resultUser, sofas: resultTravel },
             });
         });
       }
     });
   };
 
-  // Todos los viajes (TODO: Se podrán hacer busquedas sobre ellos)
-  app.get("/travels", function (req, res) {
+  // Todos los sofas
+  app.get("/couches", function (req, res) {
     let origen = req.query.origen;
     let destino = req.query.destino;
 
@@ -64,27 +64,27 @@ module.exports = function (app, gestorBD) {
     let pasajero = req.query.passenger;
 
     if (conductor != null) {
-      viajesConductor(req, res);
+      sofasConductor(req, res);
     } else if (pasajero != null) {
-      viajesPasajero(req, res);
+      sofasPasajero(req, res);
     } else {
-      gestorBD.obtenerItem(criterio, "viajes", function (viajes) {
-        if (viajes == null)
+      gestorBD.obtenerItem(criterio, "sofas", function (sofas) {
+        if (sofas == null)
           res.send({
             Error: {
               status: 500,
-              data: "Se ha producido un error al obtener los viajes, intentelo de nuevo más tarde",
+              data: "Se ha producido un error al obtener los sofas, intentelo de nuevo más tarde",
             },
           });
         else {
-          res.send({ status: 200, data: { viajes: viajes } });
+          res.send({ status: 200, data: { sofas: sofas } });
         }
       });
     }
   });
 
-  //Viajes con el id de un conductor concreto
-  function viajesConductor(req, res) {
+  //sofas con el id de un conductor concreto
+  function sofasConductor(req, res) {
     let origen = req.query.origen;
     let destino = req.query.destino;
 
@@ -109,61 +109,60 @@ module.exports = function (app, gestorBD) {
           },
         });
       else {
-        gestorBD.obtenerItem(query, "viajes", function (resultTravel) {
+        gestorBD.obtenerItem(query, "sofas", function (resultTravel) {
           if (resultTravel == null)
             res.send({
               Error: {
                 status: 500,
-                data: "Se ha producido un error al obtener los viajes del conductor, intentelo de nuevo más tarde",
+                data: "Se ha producido un error al obtener los sofas del conductor, intentelo de nuevo más tarde",
               },
             });
           else
             res.send({
               status: 200,
-              data: { conductor: resultUser, viajes: resultTravel },
+              data: { conductor: resultUser, sofas: resultTravel },
             });
         });
       }
     });
   };
 
-  // CRUD de viajes
-  app.post("/travels", function (req, res) {
-    gestorBD.insertarItem(req.body, "viajes", function (result) {
+  // CRUD de sofas
+  app.post("/couches", function (req, res) {
+    gestorBD.insertarItem(req.body, "sofas", function (result) {
       if (result == null) {
-        console.log("WARN: Fallo al insertar un viaje.");
         res.send({
           Error: {
             status: 500,
-            data: "Se ha producido un error al insertar el viaje, intentelo de nuevo más tarde",
+            data: "Se ha producido un error al insertar el , intentelo de nuevo más tarde",
           },
         });
       } else {
-        res.send({ status: 200, data: { msg: "Viaje insertado" } });
+        res.send({ status: 200, data: { msg: "sofa insertado" } });
       }
     });
   });
 
   app.delete("/travels", function (req, res) {
     let criterio = { _id: gestorBD.mongo.ObjectID(req.body.id) };
-    gestorBD.eliminarItem(criterio, "viajes", function (result) {
+    gestorBD.eliminarItem(criterio, "sofas", function (result) {
       if (result == null) {
         res.send({
           Error: {
             status: 500,
-            data: "Se ha producido un error al borrar el viaje, intentelo de nuevo más tarde",
+            data: "Se ha producido un error al borrar el sofa, intentelo de nuevo más tarde",
           },
         });
       } else {
-        res.send({ status: 200, data: { msg: "Viaje eliminado" } });
+        res.send({ status: 200, data: { msg: "sofa eliminado" } });
       }
     });
   });
 
   app.get("/travels/:id", function (req, res) {
     let criterio = { _id: gestorBD.mongo.ObjectID(req.params.id) };
-    gestorBD.obtenerItem(criterio, "viajes", function (viaje) {
-      if (viaje == null) {
+    gestorBD.obtenerItem(criterio, "sofas", function (sofa) {
+      if (sofa == null) {
         res.send({
           Error: {
             status: 500,
@@ -171,20 +170,20 @@ module.exports = function (app, gestorBD) {
           },
         });
       } else {
-        res.send({ status: 200, data: { viaje: viaje } });
+        res.send({ status: 200, data: { sofa: sofa } });
       }
     });
   });
 
   app.put("/travels/:id", function (req, res) {
     let criterio = { _id: gestorBD.mongo.ObjectID(req.params.id) };
-    let nuevoViaje = req.body;
-    gestorBD.modificarItem(criterio, nuevoViaje, "viajes", function (result) {
+    let nuevosofa = req.body;
+    gestorBD.modificarItem(criterio, nuevosofa, "sofas", function (result) {
       if (result == null)
         res.send({
           Error: {
             status: 500,
-            data: "Se ha producido un error al modificar el viaje, intentelo de nuevo más tarde",
+            data: "Se ha producido un error al modificar el sofa, intentelo de nuevo más tarde",
           },
         });
       else {

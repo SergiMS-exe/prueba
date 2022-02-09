@@ -7,7 +7,7 @@ if (isset($_SESSION['server_msg'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $url = 'https://exameniwsergiomateapi.herokuapp.com/travels';
+    $url = 'https://exameniwsergiomateapi.herokuapp.com/coucheses';
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -45,31 +45,23 @@ include "../../includes/header.php";
 <div class="container">
     <div class="login-box">
         <div class="login-card">
-            <p class="login-text">Crear viaje</p>
+            <p class="login-text">Oferta tu sofa</p>
 
             <form action="crear_viaje.php" method="POST">
                 <div class="login-inputs">
                     <div class="login-input">
-                        <label for="lugar_saluda">Lugar de salida</label>
-                        <input type="text" name="lugar_salida" required>
+                        <label for="lugar_saluda">Direccion</label>
+                        <input type="text" name="direccion" required>
                     </div>
                     <div class="login-input">
-                        <label for="lugar_llegada">Lugar de llegada</label>
-                        <input type="text" name="lugar_llegada" required>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <input type="date" name="fecha_salida" required>
-                        </div>
-                        <div class="col">
-                            <input type="time" name="hora_salida" required>
-                        </div>
+                        <label for="lugar_llegada">Latitud</label>
+                        <input type="text" name="latitud" required>
                     </div>
                     <div class="login-input">
-                        <label for="price">Precio (€)</label>
-                        <input type="number" name="price" required>
+                        <label for="lugar_llegada">Latitud</label>
+                        <input type="text" name="latitud" required>
                     </div>
-                    <input type="hidden" value=<?php echo $_SESSION['usuario']->_id ?> name="id_conductor">
+                    <input type="hidden" value=<?php echo $_SESSION['usuario']->email ?> name="email_propietario">
                     <div class="centro">
                         <button type="submit" value="Crear" class="submit-button">Crear</button>
                         <a href="../../index.php" style="margin: 2rem 1.5rem">Cancelar</a>
